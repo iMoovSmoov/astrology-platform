@@ -1,1 +1,57 @@
-/** @type {import('next').NextConfig} */\nconst nextConfig = {\n  experimental: {\n    appDir: true,\n  },\n  images: {\n    domains: [\n      'localhost',\n      'vercel.app',\n      'cosmic-wisdom-platform.vercel.app'\n    ],\n    remotePatterns: [\n      {\n        protocol: 'https',\n        hostname: '**',\n      },\n    ],\n  },\n  typescript: {\n    // Temporarily ignore build errors for deployment\n    ignoreBuildErrors: true,\n  },\n  eslint: {\n    // Temporarily ignore ESLint errors for deployment\n    ignoreDuringBuilds: true,\n  },\n  swcMinify: true,\n  compiler: {\n    removeConsole: process.env.NODE_ENV === 'production',\n  },\n  env: {\n    CUSTOM_KEY: 'cosmic-wisdom-platform',\n  },\n  async headers() {\n    return [\n      {\n        source: '/(.*)',\n        headers: [\n          {\n            key: 'X-Frame-Options',\n            value: 'DENY',\n          },\n          {\n            key: 'X-Content-Type-Options',\n            value: 'nosniff',\n          },\n          {\n            key: 'Referrer-Policy',\n            value: 'origin-when-cross-origin',\n          },\n        ],\n      },\n    ]\n  },\n}\n\nmodule.exports = nextConfig"
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  experimental: {
+    appDir: true,
+  },
+  images: {
+    domains: [
+      'localhost',
+      'vercel.app',
+      'cosmic-wisdom-platform.vercel.app'
+    ],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
+  },
+  typescript: {
+    // Temporarily ignore build errors for deployment
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    // Temporarily ignore ESLint errors for deployment
+    ignoreDuringBuilds: true,
+  },
+  swcMinify: true,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  env: {
+    CUSTOM_KEY: 'cosmic-wisdom-platform',
+  },
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'origin-when-cross-origin',
+          },
+        ],
+      },
+    ]
+  },
+}
+
+module.exports = nextConfig
