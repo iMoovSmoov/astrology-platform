@@ -1,1 +1,254 @@
-'use client'\n\nimport React from 'react'\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'\nimport { Button } from '@/components/ui/button'\nimport { Badge } from '@/components/ui/badge'\nimport { cn } from '@/lib/utils'\nimport { \n  StarIcon,\n  MoonIcon,\n  SunIcon,\n  SparklesIcon,\n  HeartIcon,\n  ZapIcon,\n  GemIcon,\n  BrainIcon,\n  CalculatorIcon,\n  EyeIcon,\n  LayoutDashboardIcon,\n  UsersIcon,\n  BookOpenIcon,\n  TrendingUpIcon,\n  ShieldIcon,\n  AwardIcon,\n  InfinityIcon\n} from 'lucide-react'\nimport Link from 'next/link'\n\nexport default function HomePage() {\n  return (\n    <div className=\"min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-purple-900 dark:to-indigo-900\">\n      {/* Header */}\n      <header className=\"border-b bg-white/80 backdrop-blur-sm dark:bg-gray-900/80 sticky top-0 z-50\">\n        <div className=\"container mx-auto px-4 py-6\">\n          <div className=\"flex items-center justify-between\">\n            <div className=\"flex items-center space-x-4\">\n              {/* Custom Logo */}\n              <div className=\"relative\">\n                <div className=\"w-12 h-12 bg-gradient-to-br from-purple-600 via-indigo-600 to-pink-600 rounded-full flex items-center justify-center\">\n                  <InfinityIcon className=\"h-6 w-6 text-white\" />\n                </div>\n                <div className=\"absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center\">\n                  <SparklesIcon className=\"h-2 w-2 text-white\" />\n                </div>\n              </div>\n              <div>\n                <h1 className=\"text-2xl font-bold bg-gradient-to-r from-purple-600 via-indigo-600 to-pink-600 bg-clip-text text-transparent\">\n                  Cosmic Wisdom Platform\n                </h1>\n                <p className=\"text-sm text-muted-foreground\">\n                  Your Complete Spiritual Journey Companion\n                </p>\n              </div>\n            </div>\n            \n            {/* Navigation */}\n            <div className=\"hidden md:flex items-center space-x-2\">\n              <Link href=\"/dashboard\">\n                <Button variant=\"default\" size=\"sm\" className=\"bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700\">\n                  <LayoutDashboardIcon className=\"h-4 w-4 mr-2\" />\n                  Dashboard\n                </Button>\n              </Link>\n              <Link href=\"/astrology\">\n                <Button variant=\"outline\" size=\"sm\">\n                  <StarIcon className=\"h-4 w-4 mr-2\" />\n                  Astrology\n                </Button>\n              </Link>\n              <Link href=\"/tarot\">\n                <Button variant=\"outline\" size=\"sm\">\n                  <SparklesIcon className=\"h-4 w-4 mr-2\" />\n                  Tarot\n                </Button>\n              </Link>\n              <Link href=\"/numerology\">\n                <Button variant=\"outline\" size=\"sm\">\n                  <CalculatorIcon className=\"h-4 w-4 mr-2\" />\n                  Numerology\n                </Button>\n              </Link>\n              <Link href=\"/crystals\">\n                <Button variant=\"outline\" size=\"sm\">\n                  <GemIcon className=\"h-4 w-4 mr-2\" />\n                  Crystals\n                </Button>\n              </Link>\n              <Link href=\"/meditation\">\n                <Button variant=\"outline\" size=\"sm\">\n                  <BrainIcon className=\"h-4 w-4 mr-2\" />\n                  Meditation\n                </Button>\n              </Link>\n              <Link href=\"/chakras\">\n                <Button variant=\"outline\" size=\"sm\">\n                  <ZapIcon className=\"h-4 w-4 mr-2\" />\n                  Chakras\n                </Button>\n              </Link>\n            </div>\n            \n            <div className=\"flex items-center space-x-2\">\n              <Badge variant=\"cosmic\" className=\"bg-gradient-to-r from-purple-600 to-indigo-600 text-white\">\n                8 Spiritual Tools\n              </Badge>\n              <Badge variant=\"outline\">\n                Professional Grade\n              </Badge>\n            </div>\n          </div>\n        </div>\n      </header>\n\n      {/* Hero Section */}\n      <section className=\"relative overflow-hidden\">\n        {/* Background Graphics */}\n        <div className=\"absolute inset-0 overflow-hidden\">\n          <div className=\"absolute top-20 left-10 w-32 h-32 bg-purple-200 dark:bg-purple-800 rounded-full opacity-20 animate-pulse\"></div>\n          <div className=\"absolute top-40 right-20 w-24 h-24 bg-indigo-200 dark:bg-indigo-800 rounded-full opacity-20 animate-pulse\" style={{ animationDelay: '1s' }}></div>\n          <div className=\"absolute bottom-20 left-1/4 w-20 h-20 bg-pink-200 dark:bg-pink-800 rounded-full opacity-20 animate-pulse\" style={{ animationDelay: '2s' }}></div>\n          <div className=\"absolute top-1/3 right-1/3 w-16 h-16 bg-yellow-200 dark:bg-yellow-800 rounded-full opacity-20 animate-pulse\" style={{ animationDelay: '0.5s' }}></div>\n        </div>\n        \n        <div className=\"relative container mx-auto px-4 py-20\">\n          <div className=\"text-center space-y-8\">\n            {/* Animated Icons */}\n            <div className=\"flex justify-center space-x-6 mb-8\">\n              <div className=\"relative\">\n                <SunIcon className=\"h-16 w-16 text-yellow-500 animate-spin\" style={{ animationDuration: '20s' }} />\n                <div className=\"absolute inset-0 bg-yellow-400 rounded-full opacity-20 animate-ping\"></div>\n              </div>\n              <div className=\"relative\">\n                <MoonIcon className=\"h-16 w-16 text-blue-400 animate-bounce\" />\n                <div className=\"absolute inset-0 bg-blue-400 rounded-full opacity-20 animate-pulse\"></div>\n              </div>\n              <div className=\"relative\">\n                <StarIcon className=\"h-16 w-16 text-purple-500 animate-pulse\" />\n                <div className=\"absolute inset-0 bg-purple-400 rounded-full opacity-20 animate-ping\" style={{ animationDelay: '1s' }}></div>\n              </div>\n              <div className=\"relative\">\n                <SparklesIcon className=\"h-16 w-16 text-pink-500 animate-bounce\" style={{ animationDelay: '0.5s' }} />\n                <div className=\"absolute inset-0 bg-pink-400 rounded-full opacity-20 animate-pulse\" style={{ animationDelay: '0.5s' }}></div>\n              </div>\n            </div>\n            \n            {/* Main Heading */}\n            <div className=\"space-y-4\">\n              <h1 className=\"text-6xl md:text-7xl font-bold bg-gradient-to-r from-purple-600 via-indigo-600 via-blue-600 to-pink-600 bg-clip-text text-transparent leading-tight\">\n                Your Spiritual\n                <br />\n                Journey Awaits\n              </h1>\n              <p className=\"text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed\">\n                Discover the ultimate spiritual platform combining ancient wisdom with modern technology. \n                Explore astrology, tarot, numerology, chakras, crystals, meditation, and find your spiritual community.\n              </p>\n            </div>\n            \n            {/* CTA Buttons */}\n            <div className=\"flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6\">\n              <Link href=\"/dashboard\">\n                <Button size=\"lg\" className=\"bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-8 py-4 text-lg\">\n                  <LayoutDashboardIcon className=\"h-5 w-5 mr-2\" />\n                  Start Your Journey\n                </Button>\n              </Link>\n              <Link href=\"/astrology\">\n                <Button variant=\"outline\" size=\"lg\" className=\"px-8 py-4 text-lg\">\n                  <StarIcon className=\"h-5 w-5 mr-2\" />\n                  Explore Tools\n                </Button>\n              </Link>\n            </div>\n            \n            {/* Trust Indicators */}\n            <div className=\"flex items-center justify-center space-x-8 pt-8\">\n              <div className=\"flex items-center space-x-2 text-muted-foreground\">\n                <ShieldIcon className=\"h-5 w-5\" />\n                <span className=\"text-sm\">Swiss Ephemeris Accuracy</span>\n              </div>\n              <div className=\"flex items-center space-x-2 text-muted-foreground\">\n                <AwardIcon className=\"h-5 w-5\" />\n                <span className=\"text-sm\">Professional Grade</span>\n              </div>\n              <div className=\"flex items-center space-x-2 text-muted-foreground\">\n                <UsersIcon className=\"h-5 w-5\" />\n                <span className=\"text-sm\">Spiritual Community</span>\n              </div>\n            </div>\n          </div>\n        </div>\n      </section>\n\n      {/* Spiritual Tools Grid */}\n      <section className=\"py-20 bg-white/50 dark:bg-gray-900/50\">\n        <div className=\"container mx-auto px-4\">\n          <div className=\"text-center space-y-4 mb-16\">\n            <h2 className=\"text-4xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent\">\n              Complete Spiritual Toolkit\n            </h2>\n            <p className=\"text-xl text-muted-foreground max-w-2xl mx-auto\">\n              Eight powerful spiritual tools integrated into one comprehensive platform\n            </p>\n          </div>\n          \n          <div className=\"grid md:grid-cols-2 lg:grid-cols-4 gap-6\">\n            {/* Astrology */}\n            <Link href=\"/astrology\">\n              <Card className=\"group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border-2 hover:border-purple-200\">\n                <CardHeader className=\"text-center\">\n                  <div className=\"mx-auto w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform\">\n                    <StarIcon className=\"h-8 w-8 text-white\" />\n                  </div>\n                  <CardTitle className=\"text-xl\">Astrology</CardTitle>\n                </CardHeader>\n                <CardContent className=\"text-center\">\n                  <p className=\"text-muted-foreground mb-4\">\n                    Swiss Ephemeris birth charts, daily horoscopes, and cosmic insights with AI interpretations.\n                  </p>\n                  <Badge variant=\"outline\" className=\"text-xs\">\n                    Professional Grade\n                  </Badge>\n                </CardContent>\n              </Card>\n            </Link>\n\n            {/* Tarot */}\n            <Link href=\"/tarot\">\n              <Card className=\"group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border-2 hover:border-purple-200\">\n                <CardHeader className=\"text-center\">\n                  <div className=\"mx-auto w-16 h-16 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform\">\n                    <SparklesIcon className=\"h-8 w-8 text-white\" />\n                  </div>\n                  <CardTitle className=\"text-xl\">Tarot</CardTitle>\n                </CardHeader>\n                <CardContent className=\"text-center\">\n                  <p className=\"text-muted-foreground mb-4\">\n                    Interactive tarot readings with multiple spreads, daily guidance, and detailed interpretations.\n                  </p>\n                  <Badge variant=\"outline\" className=\"text-xs\">\n                    78 Cards\n                  </Badge>\n                </CardContent>\n              </Card>\n            </Link>\n\n            {/* Numerology */}\n            <Link href=\"/numerology\">\n              <Card className=\"group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border-2 hover:border-purple-200\">\n                <CardHeader className=\"text-center\">\n                  <div className=\"mx-auto w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform\">\n                    <CalculatorIcon className=\"h-8 w-8 text-white\" />\n                  </div>\n                  <CardTitle className=\"text-xl\">Numerology</CardTitle>\n                </CardHeader>\n                <CardContent className=\"text-center\">\n                  <p className=\"text-muted-foreground mb-4\">\n                    Life path numbers, destiny analysis, and personal year insights with master number recognition.\n                  </p>\n                  <Badge variant=\"outline\" className=\"text-xs\">\n                    Master Numbers\n                  </Badge>\n                </CardContent>\n              </Card>\n            </Link>\n\n            {/* Crystal Healing */}\n            <Link href=\"/crystals\">\n              <Card className=\"group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border-2 hover:border-purple-200\">\n                <CardHeader className=\"text-center\">\n                  <div className=\"mx-auto w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform\">\n                    <GemIcon className=\"h-8 w-8 text-white\" />\n                  </div>\n                  <CardTitle className=\"text-xl\">Crystal Healing</CardTitle>\n                </CardHeader>\n                <CardContent className=\"text-center\">\n                  <p className=\"text-muted-foreground mb-4\">\n                    Comprehensive crystal database with healing properties, chakra associations, and care guides.\n                  </p>\n                  <Badge variant=\"outline\" className=\"text-xs\">\n                    Healing Properties\n                  </Badge>\n                </CardContent>\n              </Card>\n            </Link>\n\n            {/* Meditation */}\n            <Link href=\"/meditation\">\n              <Card className=\"group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border-2 hover:border-purple-200\">\n                <CardHeader className=\"text-center\">\n                  <div className=\"mx-auto w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform\">\n                    <BrainIcon className=\"h-8 w-8 text-white\" />\n                  </div>\n                  <CardTitle className=\"text-xl\">Meditation</CardTitle>\n                </CardHeader>\n                <CardContent className=\"text-center\">\n                  <p className=\"text-muted-foreground mb-4\">\n                    Guided meditation timer with multiple techniques, progress tracking, and mindfulness practices.\n                  </p>\n                  <Badge variant=\"outline\" className=\"text-xs\">\n                    6 Techniques\n                  </Badge>\n                </CardContent>\n              </Card>\n            </Link>\n\n            {/* Chakra Assessment */}\n            <Link href=\"/chakras\">\n              <Card className=\"group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border-2 hover:border-purple-200\">\n                <CardHeader className=\"text-center\">\n                  <div className=\"mx-auto w-16 h-16 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform\">\n                    <ZapIcon className=\"h-8 w-8 text-white\" />\n                  </div>\n                  <CardTitle className=\"text-xl\">Chakra Assessment</CardTitle>\n                </CardHeader>\n                <CardContent className=\"text-center\">\n                  <p className=\"text-muted-foreground mb-4\">\n                    Comprehensive energy center analysis with personalized recommendations and balancing techniques.\n                  </p>\n                  <Badge variant=\"outline\" className=\"text-xs\">\n                    7 Energy Centers\n                  </Badge>\n                </CardContent>\n              </Card>\n            </Link>\n\n            {/* Daily Guidance */}\n            <Link href=\"/dashboard\">\n              <Card className=\"group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border-2 hover:border-purple-200\">\n                <CardHeader className=\"text-center\">\n                  <div className=\"mx-auto w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform\">\n                    <SunIcon className=\"h-8 w-8 text-white\" />\n                  </div>\n                  <CardTitle className=\"text-xl\">Daily Guidance</CardTitle>\n                </CardHeader>\n                <CardContent className=\"text-center\">\n                  <p className=\"text-muted-foreground mb-4\">\n                    Personalized daily insights combining all spiritual tools for comprehensive guidance.\n                  </p>\n                  <Badge variant=\"outline\" className=\"text-xs\">\n                    All Tools Combined\n                  </Badge>\n                </CardContent>\n              </Card>\n            </Link>\n\n            {/* Spiritual Community */}\n            <Link href=\"/community\">\n              <Card className=\"group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border-2 hover:border-purple-200\">\n                <CardHeader className=\"text-center\">\n                  <div className=\"mx-auto w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform\">\n                    <HeartIcon className=\"h-8 w-8 text-white\" />\n                  </div>\n                  <CardTitle className=\"text-xl\">Spiritual Community</CardTitle>\n                </CardHeader>\n                <CardContent className=\"text-center\">\n                  <p className=\"text-muted-foreground mb-4\">\n                    Connect with like-minded souls, find spiritual partners, and join study groups.\n                  </p>\n                  <Badge variant=\"outline\" className=\"text-xs\">\n                    Soul Connections\n                  </Badge>\n                </CardContent>\n              </Card>\n            </Link>\n          </div>\n        </div>\n      </section>\n\n      {/* Features Section */}\n      <section className=\"py-20\">\n        <div className=\"container mx-auto px-4\">\n          <div className=\"text-center space-y-4 mb-16\">\n            <h2 className=\"text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent\">\n              Why Choose Our Platform?\n            </h2>\n            <p className=\"text-xl text-muted-foreground max-w-2xl mx-auto\">\n              Professional-grade spiritual tools with modern technology and ancient wisdom\n            </p>\n          </div>\n          \n          <div className=\"grid md:grid-cols-3 gap-8\">\n            <Card className=\"text-center border-2 hover:border-purple-200 transition-colors\">\n              <CardHeader>\n                <div className=\"mx-auto w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center mb-4\">\n                  <ShieldIcon className=\"h-8 w-8 text-white\" />\n                </div>\n                <CardTitle className=\"text-xl\">Swiss Ephemeris Accuracy</CardTitle>\n              </CardHeader>\n              <CardContent>\n                <p className=\"text-muted-foreground\">\n                  Professional-grade astronomical calculations with sub-arcsecond precision, \n                  matching the accuracy of leading astrology software worldwide.\n                </p>\n              </CardContent>\n            </Card>\n\n            <Card className=\"text-center border-2 hover:border-purple-200 transition-colors\">\n              <CardHeader>\n                <div className=\"mx-auto w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mb-4\">\n                  <InfinityIcon className=\"h-8 w-8 text-white\" />\n                </div>\n                <CardTitle className=\"text-xl\">Integrated Ecosystem</CardTitle>\n              </CardHeader>\n              <CardContent>\n                <p className=\"text-muted-foreground\">\n                  All spiritual tools work together seamlessly, providing comprehensive \n                  insights and personalized guidance for your complete spiritual journey.\n                </p>\n              </CardContent>\n            </Card>\n\n            <Card className=\"text-center border-2 hover:border-purple-200 transition-colors\">\n              <CardHeader>\n                <div className=\"mx-auto w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center mb-4\">\n                  <UsersIcon className=\"h-8 w-8 text-white\" />\n                </div>\n                <CardTitle className=\"text-xl\">Spiritual Community</CardTitle>\n              </CardHeader>\n              <CardContent>\n                <p className=\"text-muted-foreground\">\n                  Connect with like-minded individuals, find spiritual partners, \n                  and join study groups for shared growth and learning.\n                </p>\n              </CardContent>\n            </Card>\n          </div>\n        </div>\n      </section>\n\n      {/* CTA Section */}\n      <section className=\"py-20 bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-600 text-white\">\n        <div className=\"container mx-auto px-4 text-center\">\n          <div className=\"space-y-8\">\n            <div className=\"space-y-4\">\n              <h2 className=\"text-4xl md:text-5xl font-bold\">\n                Begin Your Spiritual Journey Today\n              </h2>\n              <p className=\"text-xl opacity-90 max-w-2xl mx-auto\">\n                Join thousands of spiritual seekers discovering their path through \n                our comprehensive platform of ancient wisdom and modern insights.\n              </p>\n            </div>\n            \n            <div className=\"flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6\">\n              <Link href=\"/dashboard\">\n                <Button size=\"lg\" variant=\"secondary\" className=\"px-8 py-4 text-lg bg-white text-purple-600 hover:bg-gray-100\">\n                  <LayoutDashboardIcon className=\"h-5 w-5 mr-2\" />\n                  Start Free Journey\n                </Button>\n              </Link>\n              <Link href=\"/astrology\">\n                <Button size=\"lg\" variant=\"outline\" className=\"px-8 py-4 text-lg border-white text-white hover:bg-white hover:text-purple-600\">\n                  <StarIcon className=\"h-5 w-5 mr-2\" />\n                  Explore Tools\n                </Button>\n              </Link>\n            </div>\n            \n            <div className=\"flex items-center justify-center space-x-8 pt-8 opacity-80\">\n              <div className=\"flex items-center space-x-2\">\n                <AwardIcon className=\"h-5 w-5\" />\n                <span className=\"text-sm\">Professional Grade</span>\n              </div>\n              <div className=\"flex items-center space-x-2\">\n                <ShieldIcon className=\"h-5 w-5\" />\n                <span className=\"text-sm\">Secure & Private</span>\n              </div>\n              <div className=\"flex items-center space-x-2\">\n                <UsersIcon className=\"h-5 w-5\" />\n                <span className=\"text-sm\">Growing Community</span>\n              </div>\n            </div>\n          </div>\n        </div>\n      </section>\n\n      {/* Footer */}\n      <footer className=\"border-t bg-white/80 backdrop-blur-sm dark:bg-gray-900/80\">\n        <div className=\"container mx-auto px-4 py-12\">\n          <div className=\"grid md:grid-cols-4 gap-8\">\n            {/* Brand */}\n            <div className=\"space-y-4\">\n              <div className=\"flex items-center space-x-3\">\n                <div className=\"w-8 h-8 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-full flex items-center justify-center\">\n                  <InfinityIcon className=\"h-4 w-4 text-white\" />\n                </div>\n                <span className=\"text-lg font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent\">\n                  Cosmic Wisdom\n                </span>\n              </div>\n              <p className=\"text-sm text-muted-foreground\">\n                Your complete spiritual journey companion combining ancient wisdom with modern technology.\n              </p>\n            </div>\n            \n            {/* Spiritual Tools */}\n            <div>\n              <h4 className=\"font-semibold mb-4\">Spiritual Tools</h4>\n              <div className=\"space-y-2 text-sm text-muted-foreground\">\n                <Link href=\"/astrology\" className=\"block hover:text-purple-600 transition-colors\">Astrology</Link>\n                <Link href=\"/tarot\" className=\"block hover:text-purple-600 transition-colors\">Tarot</Link>\n                <Link href=\"/numerology\" className=\"block hover:text-purple-600 transition-colors\">Numerology</Link>\n                <Link href=\"/crystals\" className=\"block hover:text-purple-600 transition-colors\">Crystal Healing</Link>\n              </div>\n            </div>\n            \n            {/* Practices */}\n            <div>\n              <h4 className=\"font-semibold mb-4\">Practices</h4>\n              <div className=\"space-y-2 text-sm text-muted-foreground\">\n                <Link href=\"/meditation\" className=\"block hover:text-purple-600 transition-colors\">Meditation</Link>\n                <Link href=\"/chakras\" className=\"block hover:text-purple-600 transition-colors\">Chakra Assessment</Link>\n                <Link href=\"/dashboard\" className=\"block hover:text-purple-600 transition-colors\">Daily Guidance</Link>\n                <Link href=\"/community\" className=\"block hover:text-purple-600 transition-colors\">Community</Link>\n              </div>\n            </div>\n            \n            {/* Platform */}\n            <div>\n              <h4 className=\"font-semibold mb-4\">Platform</h4>\n              <div className=\"space-y-2 text-sm text-muted-foreground\">\n                <Link href=\"/dashboard\" className=\"block hover:text-purple-600 transition-colors\">Dashboard</Link>\n                <Link href=\"/profile\" className=\"block hover:text-purple-600 transition-colors\">Profile</Link>\n                <Link href=\"/education\" className=\"block hover:text-purple-600 transition-colors\">Education</Link>\n                <Link href=\"/about\" className=\"block hover:text-purple-600 transition-colors\">About</Link>\n              </div>\n            </div>\n          </div>\n          \n          <div className=\"border-t mt-8 pt-8 text-center text-sm text-muted-foreground\">\n            <p>\n              © 2024 Cosmic Wisdom Platform. Powered by Swiss Ephemeris • Professional Astrology • \n              Built with Next.js, TypeScript, and shadcn/ui\n            </p>\n          </div>\n        </div>\n      </footer>\n    </div>\n  )\n}"
+'use client'
+
+import React from 'react'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
+import { cn } from '@/lib/utils'
+import { 
+  StarIcon,
+  MoonIcon,
+  SunIcon,
+  SparklesIcon,
+  HeartIcon,
+  ZapIcon,
+  GemIcon,
+  BrainIcon,
+  CalculatorIcon,
+  EyeIcon,
+  LayoutDashboardIcon,
+  UsersIcon,
+  BookOpenIcon,
+  TrendingUpIcon,
+  ShieldIcon,
+  AwardIcon,
+  InfinityIcon
+} from 'lucide-react'
+import Link from 'next/link'
+
+export default function HomePage() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-purple-900 dark:to-indigo-900">
+      {/* Header */}
+      <header className="border-b bg-white/80 backdrop-blur-sm dark:bg-gray-900/80 sticky top-0 z-50">
+        <div className="container mx-auto px-4 py-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              {/* Custom Logo */}
+              <div className="relative">
+                <div className="w-12 h-12 bg-gradient-to-br from-purple-600 via-indigo-600 to-pink-600 rounded-full flex items-center justify-center">
+                  <InfinityIcon className="h-6 w-6 text-white" />
+                </div>
+                <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
+                  <SparklesIcon className="h-2 w-2 text-white" />
+                </div>
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 via-indigo-600 to-pink-600 bg-clip-text text-transparent">
+                  Cosmic Wisdom Platform
+                </h1>
+                <p className="text-sm text-muted-foreground">
+                  Your Complete Spiritual Journey Companion
+                </p>
+              </div>
+            </div>
+            
+            {/* Navigation */}
+            <div className="hidden md:flex items-center space-x-2">
+              <Link href="/dashboard">
+                <Button variant="default" size="sm" className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700">
+                  <LayoutDashboardIcon className="h-4 w-4 mr-2" />
+                  Dashboard
+                </Button>
+              </Link>
+              <Link href="/chakras">
+                <Button variant="outline" size="sm">
+                  <ZapIcon className="h-4 w-4 mr-2" />
+                  Chakras
+                </Button>
+              </Link>
+            </div>
+            
+            <div className="flex items-center space-x-2">
+              <Badge variant="cosmic" className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
+                8 Spiritual Tools
+              </Badge>
+              <Badge variant="outline">
+                Professional Grade
+              </Badge>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="relative overflow-hidden">
+        <div className="relative container mx-auto px-4 py-20">
+          <div className="text-center space-y-8">
+            {/* Animated Icons */}
+            <div className="flex justify-center space-x-6 mb-8">
+              <div className="relative">
+                <SunIcon className="h-16 w-16 text-yellow-500 animate-spin" style={{ animationDuration: '20s' }} />
+                <div className="absolute inset-0 bg-yellow-400 rounded-full opacity-20 animate-ping"></div>
+              </div>
+              <div className="relative">
+                <MoonIcon className="h-16 w-16 text-blue-400 animate-bounce" />
+                <div className="absolute inset-0 bg-blue-400 rounded-full opacity-20 animate-pulse"></div>
+              </div>
+              <div className="relative">
+                <StarIcon className="h-16 w-16 text-purple-500 animate-pulse" />
+                <div className="absolute inset-0 bg-purple-400 rounded-full opacity-20 animate-ping" style={{ animationDelay: '1s' }}></div>
+              </div>
+              <div className="relative">
+                <SparklesIcon className="h-16 w-16 text-pink-500 animate-bounce" style={{ animationDelay: '0.5s' }} />
+                <div className="absolute inset-0 bg-pink-400 rounded-full opacity-20 animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+              </div>
+            </div>
+            
+            {/* Main Heading */}
+            <div className="space-y-4">
+              <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-purple-600 via-indigo-600 via-blue-600 to-pink-600 bg-clip-text text-transparent leading-tight">
+                Your Spiritual
+                <br />
+                Journey Awaits
+              </h1>
+              <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                Discover the ultimate spiritual platform combining ancient wisdom with modern technology. 
+                Explore astrology, tarot, numerology, chakras, crystals, meditation, and find your spiritual community.
+              </p>
+            </div>
+            
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+              <Link href="/dashboard">
+                <Button size="lg" className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-8 py-4 text-lg">
+                  <LayoutDashboardIcon className="h-5 w-5 mr-2" />
+                  Start Your Journey
+                </Button>
+              </Link>
+              <Link href="/chakras">
+                <Button variant="outline" size="lg" className="px-8 py-4 text-lg">
+                  <StarIcon className="h-5 w-5 mr-2" />
+                  Explore Tools
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Spiritual Tools Grid */}
+      <section className="py-20 bg-white/50 dark:bg-gray-900/50">
+        <div className="container mx-auto px-4">
+          <div className="text-center space-y-4 mb-16">
+            <h2 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+              Complete Spiritual Toolkit
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Eight powerful spiritual tools integrated into one comprehensive platform
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Chakra Assessment */}
+            <Link href="/chakras">
+              <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border-2 hover:border-purple-200">
+                <CardHeader className="text-center">
+                  <div className="mx-auto w-16 h-16 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <ZapIcon className="h-8 w-8 text-white" />
+                  </div>
+                  <CardTitle className="text-xl">Chakra Assessment</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <p className="text-muted-foreground mb-4">
+                    Comprehensive energy center analysis with personalized recommendations and balancing techniques.
+                  </p>
+                  <Badge variant="outline" className="text-xs">
+                    7 Energy Centers
+                  </Badge>
+                </CardContent>
+              </Card>
+            </Link>
+
+            {/* Community */}
+            <Link href="/community">
+              <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border-2 hover:border-purple-200">
+                <CardHeader className="text-center">
+                  <div className="mx-auto w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <HeartIcon className="h-8 w-8 text-white" />
+                  </div>
+                  <CardTitle className="text-xl">Spiritual Community</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <p className="text-muted-foreground mb-4">
+                    Connect with like-minded souls, find spiritual partners, and join study groups.
+                  </p>
+                  <Badge variant="outline" className="text-xs">
+                    Soul Connections
+                  </Badge>
+                </CardContent>
+              </Card>
+            </Link>
+
+            {/* Dashboard */}
+            <Link href="/dashboard">
+              <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border-2 hover:border-purple-200">
+                <CardHeader className="text-center">
+                  <div className="mx-auto w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <SunIcon className="h-8 w-8 text-white" />
+                  </div>
+                  <CardTitle className="text-xl">Daily Guidance</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <p className="text-muted-foreground mb-4">
+                    Personalized daily insights combining all spiritual tools for comprehensive guidance.
+                  </p>
+                  <Badge variant="outline" className="text-xs">
+                    All Tools Combined
+                  </Badge>
+                </CardContent>
+              </Card>
+            </Link>
+
+            {/* Coming Soon */}
+            <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border-2 hover:border-purple-200 opacity-75">
+              <CardHeader className="text-center">
+                <div className="mx-auto w-16 h-16 bg-gradient-to-br from-gray-400 to-gray-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <SparklesIcon className="h-8 w-8 text-white" />
+                </div>
+                <CardTitle className="text-xl">More Tools</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center">
+                <p className="text-muted-foreground mb-4">
+                  Astrology, Tarot, Numerology, Crystals, and Meditation tools coming soon.
+                </p>
+                <Badge variant="outline" className="text-xs">
+                  Coming Soon
+                </Badge>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t bg-white/80 backdrop-blur-sm dark:bg-gray-900/80">
+        <div className="container mx-auto px-4 py-12">
+          <div className="text-center">
+            <div className="flex items-center justify-center space-x-3 mb-4">
+              <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-full flex items-center justify-center">
+                <InfinityIcon className="h-4 w-4 text-white" />
+              </div>
+              <span className="text-lg font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                Cosmic Wisdom
+              </span>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              © 2024 Cosmic Wisdom Platform. Your complete spiritual journey companion.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+}
