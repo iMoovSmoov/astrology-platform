@@ -1,1 +1,227 @@
-'use client'\n\nimport React, { useState } from 'react'\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'\nimport { Button } from '@/components/ui/button'\nimport { Badge } from '@/components/ui/badge'\nimport { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'\nimport { CommunityFeed } from '@/components/community/CommunityFeed'\nimport { cn } from '@/lib/utils'\nimport { \n  UsersIcon,\n  TrendingUpIcon,\n  StarIcon,\n  MessageCircleIcon,\n  HeartIcon,\n  ArrowLeftIcon,\n  SparklesIcon,\n  BookOpenIcon,\n  HelpCircleIcon,\n  ChartBarIcon,\n  GlobeIcon,\n  UserPlusIcon,\n  SearchIcon,\n  FilterIcon\n} from 'lucide-react'\nimport Link from 'next/link'\n\nexport default function CommunityPage() {\n  const [activeTab, setActiveTab] = useState('feed')\n  const [selectedFilter, setSelectedFilter] = useState('all')\n\n  // Mock data for community stats\n  const communityStats = {\n    totalMembers: 12847,\n    activeToday: 1234,\n    postsToday: 89,\n    questionsAnswered: 156\n  }\n\n  const trendingTopics = [\n    { tag: 'mercury-retrograde', posts: 234, trend: '+12%' },\n    { tag: 'full-moon', posts: 189, trend: '+8%' },\n    { tag: 'synastry', posts: 156, trend: '+15%' },\n    { tag: 'birth-chart', posts: 143, trend: '+5%' },\n    { tag: 'transits', posts: 98, trend: '+22%' }\n  ]\n\n  const featuredMembers = [\n    {\n      id: '1',\n      name: 'Luna Starweaver',\n      username: 'lunastar',\n      level: 'professional',\n      specialties: ['Synastry', 'Transits'],\n      followers: 2341,\n      avatar: null\n    },\n    {\n      id: '2', \n      name: 'Marcus Celestial',\n      username: 'marcuscel',\n      level: 'advanced',\n      specialties: ['Horary', 'Electional'],\n      followers: 1876,\n      avatar: null\n    },\n    {\n      id: '3',\n      name: 'Aria Moonchild',\n      username: 'ariamoon',\n      level: 'intermediate',\n      specialties: ['Tarot', 'Intuitive'],\n      followers: 987,\n      avatar: null\n    }\n  ]\n\n  const activeGroups = [\n    {\n      id: '1',\n      name: 'Beginner Astrologers',\n      description: 'A supportive space for those new to astrology',\n      members: 3421,\n      category: 'Learning',\n      isJoined: true\n    },\n    {\n      id: '2',\n      name: 'Synastry & Relationships',\n      description: 'Discuss compatibility and relationship astrology',\n      members: 2156,\n      category: 'Relationships',\n      isJoined: false\n    },\n    {\n      id: '3',\n      name: 'Transit Tracking',\n      description: 'Share insights about current planetary movements',\n      members: 1834,\n      category: 'Transits',\n      isJoined: true\n    },\n    {\n      id: '4',\n      name: 'Professional Astrologers',\n      description: 'Network and share advanced techniques',\n      members: 567,\n      category: 'Professional',\n      isJoined: false\n    }\n  ]\n\n  const getLevelBadgeVariant = (level: string) => {\n    switch (level) {\n      case 'professional': return 'default'\n      case 'advanced': return 'secondary'\n      case 'intermediate': return 'outline'\n      default: return 'outline'\n    }\n  }\n\n  return (\n    <div className=\"min-h-screen bg-gradient-to-br from-violet-50 via-purple-50 to-indigo-50 dark:from-gray-900 dark:via-violet-900 dark:to-purple-900\">\n      {/* Header */}\n      <header className=\"border-b bg-white/80 backdrop-blur-sm dark:bg-gray-900/80\">\n        <div className=\"container mx-auto px-4 py-6\">\n          <div className=\"flex items-center justify-between\">\n            <div className=\"flex items-center space-x-3\">\n              <Link href=\"/\" className=\"flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors\">\n                <ArrowLeftIcon className=\"h-5 w-5\" />\n                <span>Back to Platform</span>\n              </Link>\n            </div>\n            <div className=\"flex items-center space-x-3\">\n              <div className=\"relative\">\n                <UsersIcon className=\"h-8 w-8 text-purple-600\" />\n                <SparklesIcon className=\"absolute -top-1 -right-1 h-4 w-4 text-yellow-500\" />\n              </div>\n              <div>\n                <h1 className=\"text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent\">\n                  Astrology Community\n                </h1>\n                <p className=\"text-sm text-muted-foreground\">\n                  Connect, learn, and share with fellow astrology enthusiasts\n                </p>\n              </div>\n            </div>\n            <div className=\"flex items-center space-x-2\">\n              <Badge variant=\"cosmic\">12.8K Members</Badge>\n              <Badge variant=\"outline\">Active Community</Badge>\n            </div>\n          </div>\n        </div>\n      </header>\n\n      {/* Main Content */}\n      <main className=\"container mx-auto px-4 py-8\">\n        <div className=\"grid lg:grid-cols-4 gap-8\">\n          {/* Sidebar */}\n          <div className=\"lg:col-span-1 space-y-6\">\n            {/* Community Stats */}\n            <Card>\n              <CardHeader>\n                <CardTitle className=\"flex items-center space-x-2\">\n                  <TrendingUpIcon className=\"h-5 w-5 text-green-600\" />\n                  <span>Community Stats</span>\n                </CardTitle>\n              </CardHeader>\n              <CardContent className=\"space-y-4\">\n                <div className=\"grid grid-cols-2 gap-4\">\n                  <div className=\"text-center\">\n                    <div className=\"text-2xl font-bold text-purple-600\">\n                      {communityStats.totalMembers.toLocaleString()}\n                    </div>\n                    <div className=\"text-xs text-muted-foreground\">Total Members</div>\n                  </div>\n                  <div className=\"text-center\">\n                    <div className=\"text-2xl font-bold text-green-600\">\n                      {communityStats.activeToday.toLocaleString()}\n                    </div>\n                    <div className=\"text-xs text-muted-foreground\">Active Today</div>\n                  </div>\n                  <div className=\"text-center\">\n                    <div className=\"text-2xl font-bold text-blue-600\">\n                      {communityStats.postsToday}\n                    </div>\n                    <div className=\"text-xs text-muted-foreground\">Posts Today</div>\n                  </div>\n                  <div className=\"text-center\">\n                    <div className=\"text-2xl font-bold text-orange-600\">\n                      {communityStats.questionsAnswered}\n                    </div>\n                    <div className=\"text-xs text-muted-foreground\">Questions Answered</div>\n                  </div>\n                </div>\n              </CardContent>\n            </Card>\n\n            {/* Trending Topics */}\n            <Card>\n              <CardHeader>\n                <CardTitle className=\"flex items-center space-x-2\">\n                  <StarIcon className=\"h-5 w-5 text-yellow-600\" />\n                  <span>Trending Topics</span>\n                </CardTitle>\n              </CardHeader>\n              <CardContent>\n                <div className=\"space-y-3\">\n                  {trendingTopics.map((topic, index) => (\n                    <div key={topic.tag} className=\"flex items-center justify-between\">\n                      <div className=\"flex items-center space-x-2\">\n                        <span className=\"text-sm font-medium text-muted-foreground\">#{index + 1}</span>\n                        <Badge variant=\"outline\" className=\"text-xs\">\n                          #{topic.tag}\n                        </Badge>\n                      </div>\n                      <div className=\"flex items-center space-x-2\">\n                        <span className=\"text-xs text-muted-foreground\">{topic.posts}</span>\n                        <Badge variant=\"secondary\" className=\"text-xs text-green-600\">\n                          {topic.trend}\n                        </Badge>\n                      </div>\n                    </div>\n                  ))}\n                </div>\n              </CardContent>\n            </Card>\n\n            {/* Featured Members */}\n            <Card>\n              <CardHeader>\n                <CardTitle className=\"flex items-center space-x-2\">\n                  <UserPlusIcon className=\"h-5 w-5 text-indigo-600\" />\n                  <span>Featured Members</span>\n                </CardTitle>\n              </CardHeader>\n              <CardContent>\n                <div className=\"space-y-3\">\n                  {featuredMembers.map((member) => (\n                    <div key={member.id} className=\"flex items-center space-x-3\">\n                      <div className=\"w-10 h-10 bg-gradient-to-br from-purple-400 to-indigo-500 rounded-full flex items-center justify-center text-white font-semibold\">\n                        {member.name.charAt(0)}\n                      </div>\n                      <div className=\"flex-1 min-w-0\">\n                        <div className=\"flex items-center space-x-2\">\n                          <p className=\"text-sm font-medium truncate\">{member.name}</p>\n                          <Badge variant={getLevelBadgeVariant(member.level)} className=\"text-xs\">\n                            {member.level}\n                          </Badge>\n                        </div>\n                        <p className=\"text-xs text-muted-foreground\">@{member.username}</p>\n                        <div className=\"flex items-center space-x-1 mt-1\">\n                          <span className=\"text-xs text-muted-foreground\">{member.followers} followers</span>\n                        </div>\n                      </div>\n                    </div>\n                  ))}\n                </div>\n              </CardContent>\n            </Card>\n          </div>\n\n          {/* Main Feed */}\n          <div className=\"lg:col-span-2\">\n            <Tabs value={activeTab} onValueChange={setActiveTab} className=\"space-y-6\">\n              <div className=\"flex items-center justify-between\">\n                <TabsList className=\"grid w-full max-w-md grid-cols-4\">\n                  <TabsTrigger value=\"feed\">Feed</TabsTrigger>\n                  <TabsTrigger value=\"trending\">Trending</TabsTrigger>\n                  <TabsTrigger value=\"questions\">Q&A</TabsTrigger>\n                  <TabsTrigger value=\"charts\">Charts</TabsTrigger>\n                </TabsList>\n                \n                <div className=\"flex items-center space-x-2\">\n                  <Button variant=\"outline\" size=\"sm\">\n                    <FilterIcon className=\"h-4 w-4 mr-2\" />\n                    Filter\n                  </Button>\n                  <Button variant=\"outline\" size=\"sm\">\n                    <SearchIcon className=\"h-4 w-4 mr-2\" />\n                    Search\n                  </Button>\n                </div>\n              </div>\n\n              <TabsContent value=\"feed\" className=\"space-y-6\">\n                <CommunityFeed />\n              </TabsContent>\n\n              <TabsContent value=\"trending\" className=\"space-y-6\">\n                <Card>\n                  <CardContent className=\"pt-6\">\n                    <div className=\"text-center py-8\">\n                      <TrendingUpIcon className=\"h-12 w-12 text-muted-foreground mx-auto mb-4\" />\n                      <h3 className=\"text-lg font-semibold mb-2\">Trending Posts</h3>\n                      <p className=\"text-muted-foreground\">Discover the most popular content in the community</p>\n                    </div>\n                  </CardContent>\n                </Card>\n              </TabsContent>\n\n              <TabsContent value=\"questions\" className=\"space-y-6\">\n                <Card>\n                  <CardContent className=\"pt-6\">\n                    <div className=\"text-center py-8\">\n                      <HelpCircleIcon className=\"h-12 w-12 text-muted-foreground mx-auto mb-4\" />\n                      <h3 className=\"text-lg font-semibold mb-2\">Questions & Answers</h3>\n                      <p className=\"text-muted-foreground\">Get help from the community and share your knowledge</p>\n                    </div>\n                  </CardContent>\n                </Card>\n              </TabsContent>\n\n              <TabsContent value=\"charts\" className=\"space-y-6\">\n                <Card>\n                  <CardContent className=\"pt-6\">\n                    <div className=\"text-center py-8\">\n                      <ChartBarIcon className=\"h-12 w-12 text-muted-foreground mx-auto mb-4\" />\n                      <h3 className=\"text-lg font-semibold mb-2\">Shared Charts</h3>\n                      <p className=\"text-muted-foreground\">Explore birth charts shared by community members</p>\n                    </div>\n                  </CardContent>\n                </Card>\n              </TabsContent>\n            </Tabs>\n          </div>\n\n          {/* Right Sidebar */}\n          <div className=\"lg:col-span-1 space-y-6\">\n            {/* Active Groups */}\n            <Card>\n              <CardHeader>\n                <CardTitle className=\"flex items-center space-x-2\">\n                  <GlobeIcon className=\"h-5 w-5 text-blue-600\" />\n                  <span>Active Groups</span>\n                </CardTitle>\n              </CardHeader>\n              <CardContent>\n                <div className=\"space-y-3\">\n                  {activeGroups.map((group) => (\n                    <div key={group.id} className=\"p-3 border rounded-lg hover:bg-muted/50 transition-colors\">\n                      <div className=\"flex items-start justify-between mb-2\">\n                        <h4 className=\"font-medium text-sm\">{group.name}</h4>\n                        <Badge variant=\"outline\" className=\"text-xs\">\n                          {group.category}\n                        </Badge>\n                      </div>\n                      <p className=\"text-xs text-muted-foreground mb-2\">{group.description}</p>\n                      <div className=\"flex items-center justify-between\">\n                        <span className=\"text-xs text-muted-foreground\">\n                          {group.members.toLocaleString()} members\n                        </span>\n                        <Button \n                          size=\"sm\" \n                          variant={group.isJoined ? 'secondary' : 'outline'}\n                          className=\"text-xs h-6\"\n                        >\n                          {group.isJoined ? 'Joined' : 'Join'}\n                        </Button>\n                      </div>\n                    </div>\n                  ))}\n                </div>\n                <Button variant=\"outline\" className=\"w-full mt-4\" size=\"sm\">\n                  View All Groups\n                </Button>\n              </CardContent>\n            </Card>\n\n            {/* Quick Actions */}\n            <Card>\n              <CardHeader>\n                <CardTitle className=\"flex items-center space-x-2\">\n                  <SparklesIcon className=\"h-5 w-5 text-purple-600\" />\n                  <span>Quick Actions</span>\n                </CardTitle>\n              </CardHeader>\n              <CardContent className=\"space-y-3\">\n                <Button variant=\"outline\" className=\"w-full justify-start\" size=\"sm\">\n                  <MessageCircleIcon className=\"h-4 w-4 mr-2\" />\n                  Ask a Question\n                </Button>\n                <Button variant=\"outline\" className=\"w-full justify-start\" size=\"sm\">\n                  <ChartBarIcon className=\"h-4 w-4 mr-2\" />\n                  Share Chart\n                </Button>\n                <Button variant=\"outline\" className=\"w-full justify-start\" size=\"sm\">\n                  <BookOpenIcon className=\"h-4 w-4 mr-2\" />\n                  Start Discussion\n                </Button>\n                <Button variant=\"outline\" className=\"w-full justify-start\" size=\"sm\">\n                  <UserPlusIcon className=\"h-4 w-4 mr-2\" />\n                  Find Friends\n                </Button>\n              </CardContent>\n            </Card>\n\n            {/* Community Guidelines */}\n            <Card>\n              <CardHeader>\n                <CardTitle className=\"text-sm\">Community Guidelines</CardTitle>\n              </CardHeader>\n              <CardContent>\n                <div className=\"space-y-2 text-xs text-muted-foreground\">\n                  <p>• Be respectful and kind to all members</p>\n                  <p>• Share knowledge and help others learn</p>\n                  <p>• Keep discussions astrology-related</p>\n                  <p>• No spam or self-promotion</p>\n                  <p>• Respect different astrological approaches</p>\n                </div>\n                <Button variant=\"link\" className=\"text-xs p-0 h-auto mt-2\">\n                  Read Full Guidelines\n                </Button>\n              </CardContent>\n            </Card>\n          </div>\n        </div>\n      </main>\n\n      {/* Footer */}\n      <footer className=\"border-t bg-white/80 backdrop-blur-sm dark:bg-gray-900/80 mt-16\">\n        <div className=\"container mx-auto px-4 py-8\">\n          <div className=\"text-center text-muted-foreground\">\n            <p className=\"text-sm\">\n              Astrology Community • Connect, Learn, Share • \n              Building the Future of Astrological Knowledge\n            </p>\n          </div>\n        </div>\n      </footer>\n    </div>\n  )\n}"
+'use client'
+
+import React, { useState } from 'react'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { CommunityFeed } from '@/components/community/CommunityFeed'
+import { cn } from '@/lib/utils'
+import { 
+  UsersIcon,
+  TrendingUpIcon,
+  StarIcon,
+  MessageCircleIcon,
+  HeartIcon,
+  ArrowLeftIcon,
+  SparklesIcon,
+  BookOpenIcon,
+  HelpCircleIcon,
+  ChartBarIcon,
+  GlobeIcon,
+  UserPlusIcon,
+  SearchIcon,
+  FilterIcon
+} from 'lucide-react'
+import Link from 'next/link'
+
+export default function CommunityPage() {
+  const [activeTab, setActiveTab] = useState('feed')
+  const [selectedFilter, setSelectedFilter] = useState('all')
+
+  // Mock data for community stats
+  const communityStats = {
+    totalMembers: 12847,
+    activeToday: 1234,
+    postsToday: 89,
+    questionsAnswered: 156
+  }
+
+  const trendingTopics = [
+    { tag: 'mercury-retrograde', posts: 234, trend: '+12%' },
+    { tag: 'full-moon', posts: 189, trend: '+8%' },
+    { tag: 'synastry', posts: 156, trend: '+15%' },
+    { tag: 'birth-chart', posts: 143, trend: '+5%' },
+    { tag: 'transits', posts: 98, trend: '+22%' }
+  ]
+
+  const featuredMembers = [
+    {
+      id: '1',
+      name: 'Luna Starweaver',
+      username: 'lunastar',
+      level: 'professional',
+      specialties: ['Synastry', 'Transits'],
+      followers: 2341,
+      avatar: null
+    },
+    {
+      id: '2', 
+      name: 'Marcus Celestial',
+      username: 'marcuscel',
+      level: 'advanced',
+      specialties: ['Horary', 'Electional'],
+      followers: 1876,
+      avatar: null
+    },
+    {
+      id: '3',
+      name: 'Aria Moonchild',
+      username: 'ariamoon',
+      level: 'intermediate',
+      specialties: ['Tarot', 'Intuitive'],
+      followers: 987,
+      avatar: null
+    }
+  ]
+
+  const getLevelBadgeVariant = (level: string) => {
+    switch (level) {
+      case 'professional': return 'default'
+      case 'advanced': return 'secondary'
+      case 'intermediate': return 'outline'
+      default: return 'outline'
+    }
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-violet-50 via-purple-50 to-indigo-50 dark:from-gray-900 dark:via-violet-900 dark:to-purple-900">
+      {/* Header */}
+      <header className="border-b bg-white/80 backdrop-blur-sm dark:bg-gray-900/80">
+        <div className="container mx-auto px-4 py-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <Link href="/" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
+                <ArrowLeftIcon className="h-5 w-5" />
+                <span>Back to Platform</span>
+              </Link>
+            </div>
+            <div className="flex items-center space-x-3">
+              <div className="relative">
+                <UsersIcon className="h-8 w-8 text-purple-600" />
+                <SparklesIcon className="absolute -top-1 -right-1 h-4 w-4 text-yellow-500" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                  Astrology Community
+                </h1>
+                <p className="text-sm text-muted-foreground">
+                  Connect, learn, and share with fellow astrology enthusiasts
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Badge variant="cosmic">12.8K Members</Badge>
+              <Badge variant="outline">Active Community</Badge>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="container mx-auto px-4 py-8">
+        <div className="grid lg:grid-cols-4 gap-8">
+          {/* Sidebar */}
+          <div className="lg:col-span-1 space-y-6">
+            {/* Community Stats */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center space-x-2">
+                  <TrendingUpIcon className="h-5 w-5 text-green-600" />
+                  <span>Community Stats</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-purple-600">
+                      {communityStats.totalMembers.toLocaleString()}
+                    </div>
+                    <div className="text-xs text-muted-foreground">Total Members</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-green-600">
+                      {communityStats.activeToday.toLocaleString()}
+                    </div>
+                    <div className="text-xs text-muted-foreground">Active Today</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Main Feed */}
+          <div className="lg:col-span-2">
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+              <TabsList className="grid w-full max-w-md grid-cols-4">
+                <TabsTrigger value="feed">Feed</TabsTrigger>
+                <TabsTrigger value="trending">Trending</TabsTrigger>
+                <TabsTrigger value="questions">Q&A</TabsTrigger>
+                <TabsTrigger value="charts">Charts</TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="feed" className="space-y-6">
+                <CommunityFeed />
+              </TabsContent>
+
+              <TabsContent value="trending" className="space-y-6">
+                <Card>
+                  <CardContent className="pt-6">
+                    <div className="text-center py-8">
+                      <TrendingUpIcon className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                      <h3 className="text-lg font-semibold mb-2">Trending Posts</h3>
+                      <p className="text-muted-foreground">Discover the most popular content in the community</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+
+              <TabsContent value="questions" className="space-y-6">
+                <Card>
+                  <CardContent className="pt-6">
+                    <div className="text-center py-8">
+                      <HelpCircleIcon className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                      <h3 className="text-lg font-semibold mb-2">Questions & Answers</h3>
+                      <p className="text-muted-foreground">Get help from the community and share your knowledge</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+
+              <TabsContent value="charts" className="space-y-6">
+                <Card>
+                  <CardContent className="pt-6">
+                    <div className="text-center py-8">
+                      <ChartBarIcon className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                      <h3 className="text-lg font-semibold">Shared Charts</h3>
+                      <p className="text-muted-foreground">Explore birth charts shared by community members</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+            </Tabs>
+          </div>
+
+          {/* Right Sidebar */}
+          <div className="lg:col-span-1 space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Quick Actions</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <Button variant="outline" className="w-full justify-start" size="sm">
+                  <MessageCircleIcon className="h-4 w-4 mr-2" />
+                  Ask a Question
+                </Button>
+                <Button variant="outline" className="w-full justify-start" size="sm">
+                  <ChartBarIcon className="h-4 w-4 mr-2" />
+                  Share Chart
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </main>
+    </div>
+  )
+}
