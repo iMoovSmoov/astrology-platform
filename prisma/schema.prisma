@@ -1,0 +1,257 @@
+// Prisma schema for the astrology platform
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  image     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  accounts    Account[]
+  sessions    Session[]
+  birthCharts BirthChart[]
+  
+  @@map("users")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+model BirthChart {
+  id           String   @id @default(cuid())
+  userId       String?
+  name         String
+  birthDate    DateTime
+  birthTime    String
+  latitude     Float
+  longitude    Float
+  city         String
+  country      String
+  timezone     String
+  houseSystem  String   @default("placidus")
+  zodiacSystem String   @default("tropical")
+  isPublic     Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  user              User?              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  planetaryPositions PlanetaryPosition[]
+  houses            House[]
+  aspects           Aspect[]
+  interpretations   Interpretation[]
+
+  @@map("birth_charts")
+}
+
+model PlanetaryPosition {
+  id          String  @id @default(cuid())
+  chartId     String
+  planet      String
+  longitude   Float
+  latitude    Float?
+  distance    Float?
+  speed       Float?
+  retrograde  Boolean @default(false)
+  house       Int?
+  sign        String
+  degree      Int
+  minute      Int
+  second      Float   @default(0)
+
+  // Relations
+  chart BirthChart @relation(fields: [chartId], references: [id], onDelete: Cascade)
+
+  @@map("planetary_positions")
+}
+
+model House {
+  id      String @id @default(cuid())
+  chartId String
+  number  Int
+  cusp    Float
+  sign    String
+  ruler   String
+
+  // Relations
+  chart BirthChart @relation(fields: [chartId], references: [id], onDelete: Cascade)
+
+  @@map("houses")
+}
+
+model Aspect {
+  id         String  @id @default(cuid())
+  chartId    String
+  planet1    String
+  planet2    String
+  type       String
+  orb        Float
+  exactOrb   Float
+  applying   Boolean @default(false)
+  separating Boolean @default(false)
+  strength   String
+
+  // Relations
+  chart BirthChart @relation(fields: [chartId], references: [id], onDelete: Cascade)
+
+  @@map("aspects")
+}
+
+model Interpretation {
+  id          String   @id @default(cuid())
+  chartId     String?
+  type        String   // planet_sign, planet_house, aspect, etc.
+  key         String   // sun_aries, mars_10th_house, etc.
+  title       String
+  description String   @db.Text
+  keywords    String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  chart BirthChart? @relation(fields: [chartId], references: [id], onDelete: Cascade)
+
+  @@map("interpretations")
+}
+
+model Transit {
+  id             String   @id @default(cuid())
+  transitPlanet  String
+  natalPlanet    String
+  aspect         String
+  orb            Float
+  exact          Boolean  @default(false)
+  applying       Boolean  @default(false)
+  exactDate      DateTime?
+  influence      String   // major, moderate, minor
+  userId         String?
+  chartId        String?
+  createdAt      DateTime @default(now())
+
+  @@map("transits")
+}
+
+model Synastry {
+  id            String   @id @default(cuid())
+  chart1Id      String
+  chart2Id      String
+  score         Int
+  compatibility String   // excellent, very good, good, fair, challenging
+  summary       String   @db.Text
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  aspects SynastryAspect[]
+
+  @@map("synastries")
+}
+
+model SynastryAspect {
+  id         String @id @default(cuid())
+  synastryId String
+  planet1    String
+  chart1     Boolean
+  planet2    String
+  chart2     Boolean
+  aspect     String
+  orb        Float
+  strength   String
+  influence  String // positive, negative, neutral
+
+  // Relations
+  synastry Synastry @relation(fields: [synastryId], references: [id], onDelete: Cascade)
+
+  @@map("synastry_aspects")
+}
+
+model Horoscope {
+  id           String   @id @default(cuid())
+  sign         String?  // For general horoscopes
+  chartId      String?  // For personalized horoscopes
+  date         DateTime
+  type         String   // daily, weekly, monthly
+  general      String   @db.Text
+  love         String?  @db.Text
+  career       String?  @db.Text
+  health       String?  @db.Text
+  luckyNumbers Int[]
+  luckyColor   String?
+  createdAt    DateTime @default(now())
+
+  @@map("horoscopes")
+}
+
+model EphemerisData {
+  id        String   @id @default(cuid())
+  date      DateTime
+  planet    String
+  longitude Float
+  latitude  Float
+  distance  Float
+  speed     Float
+  createdAt DateTime @default(now())
+
+  @@unique([date, planet])
+  @@map("ephemeris_data")
+}
+
+model UserPreferences {
+  id           String  @id @default(cuid())
+  userId       String  @unique
+  houseSystem  String  @default("placidus")
+  zodiacSystem String  @default("tropical")
+  defaultOrbs  Json?   // Custom orb settings
+  notifications Boolean @default(true)
+  timezone     String  @default("UTC")
+  language     String  @default("en")
+
+  @@map("user_preferences")
+}
